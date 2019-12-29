@@ -1,0 +1,12 @@
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\bin\Debug\DBTest_split_interface.exe.config
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\bin\Debug\DBTest_split_interface.exe
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\bin\Debug\DBTest_split_interface.pdb
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\obj\Debug\DBTest_split_interface.csprojAssemblyReference.cache
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\obj\Debug\DBTest_split_interface.MainForm.resources
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\obj\Debug\DBTest_split_interface.Properties.Resources.resources
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\obj\Debug\DBTest_split_interface.csproj.GenerateResource.cache
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\obj\Debug\DBTest_split_interface.csproj.CoreCompileInputs.cache
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\obj\Debug\DBTest_split_interface.exe
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\obj\Debug\DBTest_split_interface.pdb
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\bin\Debug\Database.mdf
+D:\Documents\Ayrum\3 курс\SPZ\DBTest_split_interface\DBTest_split_interface\bin\Debug\Database_log.ldf
