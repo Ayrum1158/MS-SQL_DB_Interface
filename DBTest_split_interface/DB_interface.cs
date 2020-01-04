@@ -12,7 +12,6 @@ namespace DBTest_split_interface
     class DB_interface
     {
         private string ConnectionString;
-        //private SqlConnection conn;
 
         public DB_interface()//default DB
         {
@@ -25,9 +24,14 @@ namespace DBTest_split_interface
             //conn = new SqlConnection(ConnectionString);
         }
 
-        public string[] SelectAllFrom(string Table)//string and int values only(can be expanded)
+        /// <summary>
+        /// Method to get whole table data.
+        /// </summary>
+        /// <param name="Table">Table in database to select from.</param>
+        /// <returns></returns>
+        public object[] SelectAllFrom(string Table)//string and int values only(can be expanded)
         {
-            List<string> Values = new List<string>();
+            List<object> Values = new List<object>();
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -41,14 +45,7 @@ namespace DBTest_split_interface
                         {
                             for (int i = 0; i < DR.FieldCount; i++)
                             {
-                                if (DR.GetValue(i).GetType() == typeof(string))
-                                {
-                                    Values.Add(DR.GetString(i));
-                                }
-                                else if (DR.GetValue(i).GetType() == typeof(int))
-                                {
-                                    Values.Add(DR.GetInt32(i).ToString());
-                                }
+                                Values.Add(DR.GetValue(i));                               
                             }
                         }
                 }
@@ -57,7 +54,13 @@ namespace DBTest_split_interface
             return Values.ToArray();
         }
 
-        public void InsertInto(string Table, string[] ParamNames, object[] ParamValues)//only 1 row per call!
+        /// <summary>
+        /// Method to insert 1 row of data in table of database.
+        /// </summary>
+        /// <param name="Table">Table to insert data in.</param>
+        /// <param name="ParamNames">Names of columns.</param>
+        /// <param name="ParamValues">Values corresponding to the parameters.</param>
+        public void InsertInto(string Table, string[] ParamNames, object[] ParamValues)
         {
             SqlConnection conn = new SqlConnection(ConnectionString);
             int N = ParamNames.Length;
@@ -69,7 +72,6 @@ namespace DBTest_split_interface
             for (int i = 0; i < N; i++)
             {
                 CommandSB.AppendFormat("@{0},",ParamNames[i]);
-                //cmdInsertIn.Parameters.AddWithValue(ParamNames[i], Params[i]);
                 cmdInsertIn.Parameters.AddWithValue(ParamNames[i], ParamValues[i]);
             }
 
@@ -77,20 +79,27 @@ namespace DBTest_split_interface
             using (conn)
             {
                 conn.Open();
-                //cmdInsertIn.ExecuteNonQuery();//testing row
                 try {
                 cmdInsertIn.ExecuteNonQuery();
                 }
                 catch(SqlException exc)
                 {
-                    if(exc.Number == 2627)//2627
+                    if(exc.Number == 2627)//2627 - primary key violation code
                     MessageBox.Show("Cannot execute writing!\nPrimary key violation!", "Data error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 conn.Close();
             }
         }
 
-        public int DeleteRow(string Table, string WhereParam, string ParamValue)
+        /// <summary>
+        /// Method to delete rows in database table.
+        /// SqlCommand: "DELETE FROM {Table} WHERE {WhereParam} = {ParamValue}".
+        /// </summary>
+        /// <param name="Table">Table in database to delete from.</param>
+        /// <param name="WhereParam">Column parameter.</param>
+        /// <param name="ParamValue">Compare parameter.</param>
+        /// <returns></returns>
+        public int DeleteRows(string Table, string WhereParam, string ParamValue)
         {
             int RowsDeleted;
             using (SqlConnection conn = new SqlConnection(ConnectionString))
@@ -108,6 +117,11 @@ namespace DBTest_split_interface
             return RowsDeleted;
         }
 
+        /// <summary>
+        /// Method to delete ALL rows from table.
+        /// </summary>
+        /// <param name="Table">Table to clear.</param>
+        /// <returns></returns>
         public int ClearTable(string Table)//be careful there
         {
             int RowsDeleted;
